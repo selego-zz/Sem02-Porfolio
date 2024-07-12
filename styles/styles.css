@@ -11,10 +11,23 @@
 html {
   --space: 1rem;
   --shadow: 1px 1px 2px;
+  --menu-height: 12rem;
 
   /* COLORES */
-  --colorDeFondo: #d7dad9;
+  --colorDeFondo: #aaf3db;
   --colorDeEnlaces: #610f88;
+
+  /* TAMAÑOS */
+
+  /* ABOUT */
+
+  --about-text-l-margin: 50%;
+  --about-text-r-margin: 10%;
+
+  --about-text-width-min: 40rem;
+  --about-text-width: 30%;
+
+  --about-photo-max-width: 30%;
 }
 
 /* ELEMENTOS COMUNES */
@@ -29,6 +42,7 @@ menu {
   display: flex;
   justify-content: center;
   gap: var(--space);
+  height: var(--menu-height);
 
   font-family: "Roboto Slab", serif;
   /*   font-weight: bold; */
@@ -50,3 +64,41 @@ h1 {
   font-style: italic;
   text-align: center;
 }
+/* FOOTER */
+footer {
+  text-align: left;
+}
+
+/* about  */
+#about {
+  text-align: center;
+}
+
+#about main {
+  height: calc(calc(100vh - var(--menu-height)) - 4rem);
+}
+
+#about h1,
+#about main h2,
+#about main p,
+#about main a {
+  margin-right: var(--about-text-r-margin);
+  margin-left: var(--about-text-l-margin);
+  overflow: hidden;
+}
+#about img {
+  border-radius: 50%;
+  width: calc(var(--about-text-l-margin) - var(--about-text-r-margin));
+  max-width: var(--about-photo-max-width);
+
+  position: relative;
+  bottom: 17rem;
+  right: calc(calc(var(--about-photo-max-width) / 2) + 2rem);
+}
+
+/* debug */
+/* body * {
+  border-width: 1px;
+  border-style: solid;
+}
+ */
