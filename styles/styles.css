@@ -11,29 +11,42 @@
 html {
   --space: 1rem;
   --shadow: 1px 1px 2px;
-  --menu-height: 12rem;
+  --menu-height: 20vh;
 
   /* COLORES */
-  --colorDeFondo: #aaf3db;
+  --colorDeFondo: #b8e3f0;
   --colorDeEnlaces: #610f88;
 
   /* TAMAÑOS */
+  --space: 1rem;
 
   /* ABOUT */
 
-  --about-text-l-margin: 50%;
-  --about-text-r-margin: 10%;
+  --about-grid-c1-whidth: 35vw;
+  --about-grid-c2-whidth: 35vw;
+  --about-grid-c1-min-whidth: 20rem;
+  --about-grid-c2-min-whidth: 20rem;
 
+  --about-grid-r1-height: var(--menu-height);
+  --about-grid-r2-height: 3rem;
+  --about-grid-r3-height: 2rem;
+  --about-grid-lr-height: 2rem; /* last row*/
+
+  /*   --about-text-l-margin: 50%;
+  --about-text-r-margin: 10%;
   --about-text-width-min: 40rem;
   --about-text-width: 30%;
-
   --about-photo-max-width: 30%;
+ */
 }
 
 /* ELEMENTOS COMUNES */
 
 html {
   background-color: var(--colorDeFondo);
+}
+body {
+  height: 100vh;
 }
 /* CABECERA */
 
@@ -72,28 +85,99 @@ footer {
 /* about  */
 #about {
   text-align: center;
+  justify-items: center;
+  align-items: start;
+
+  display: grid;
+  /*   grid-template-columns: calc(
+    var(--about-grid-c1-whidth) + var(--about-grid-c2-whidth)
+  );
+ */
+  grid-template-columns: 100vw;
+
+  grid-template-rows:
+    calc(var(--about-grid-r1-height) + var(--about-grid-r2-height))
+    1fr var(--about-grid-lr-height);
+  grid-template-areas:
+    "header "
+    "body"
+    "footer";
+}
+#about header {
+  grid-area: header;
+
+  display: grid;
+  gap: var(--space);
+  grid-template-columns:
+    minmax(var(--about-grid-c1-min-whidth), var(--about-grid-c1-whidth))
+    minmax(var(--about-grid-c1-min-whidth), var(--about-grid-c2-whidth));
+  grid-template-rows: var(--about-grid-r1-height) var(--about-grid-r2-height);
+  grid-template-areas:
+    "menu menu "
+    "photo name";
+  align-content: start;
+}
+
+#about header menu {
+  grid-area: menu;
+}
+
+#about header h1 {
+  grid-area: name;
 }
 
 #about main {
-  height: calc(calc(100vh - var(--menu-height)) - 4rem);
-}
+  grid-area: body;
 
-#about h1,
-#about main h2,
-#about main p,
+  display: grid;
+  gap: var(--space);
+
+  grid-template-columns:
+    minmax(var(--about-grid-c1-min-whidth), var(--about-grid-c1-whidth))
+    minmax(var(--about-grid-c1-min-whidth), var(--about-grid-c2-whidth));
+  grid-template-rows: var(--about-grid-r2-height) var(--about-grid-r3-height) repeat(
+      5,
+      fit-content
+    );
+  grid-template-areas:
+    "photo name "
+    "photo profession "
+    "photo p1 "
+    "photo p2 "
+    "photo p3 "
+    "photo p4 "
+    "photo cv";
+}
+#about main h2 {
+  grid-area: profession;
+}
 #about main a {
-  margin-right: var(--about-text-r-margin);
-  margin-left: var(--about-text-l-margin);
-  overflow: hidden;
+  grid-area: cv;
 }
-#about img {
+#about main img {
+  grid-area: photo;
   border-radius: 50%;
-  width: calc(var(--about-text-l-margin) - var(--about-text-r-margin));
-  max-width: var(--about-photo-max-width);
+  width: var(--about-grid-c1-whidth);
+  min-width: var(--about-grid-c1-min-whidth);
+}
 
-  position: relative;
-  bottom: 17rem;
-  right: calc(calc(var(--about-photo-max-width) / 2) + 2rem);
+#about main p:nth-of-type(1) {
+  grid-area: p1;
+}
+#about main p:nth-of-type(2) {
+  grid-area: p2;
+}
+#about main p:nth-of-type(3) {
+  grid-area: p3;
+}
+#about main p:nth-of-type(4) {
+  grid-area: p4;
+}
+
+#about footer {
+  margin-left: var(--space);
+  justify-self: start;
+  grid-area: footer;
 }
 
 /* debug */
