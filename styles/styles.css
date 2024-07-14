@@ -26,12 +26,15 @@ html {
   --about-grid-c2-whidth: 35vw;
   --about-grid-c1-min-whidth: 20rem;
   --about-grid-c2-min-whidth: 20rem;
+  --about-grid-c1-max-whidth: 400px;
+  --about-grid-c2-max-whidth: 400px;
 
   --about-grid-r1-height: var(--menu-height);
   --about-grid-r2-height: 3rem;
   --about-grid-r3-height: 2rem;
   --about-grid-lr-height: 2rem; /* last row*/
 
+  --contact-grid-width: 23.6rem;
   /*   --about-text-l-margin: 50%;
   --about-text-r-margin: 10%;
   --about-text-width-min: 40rem;
@@ -47,6 +50,12 @@ html {
 }
 body {
   height: 100vh;
+  text-align: center;
+  justify-items: center;
+  align-items: start;
+
+  display: grid;
+  grid-template-columns: 100vw;
 }
 /* CABECERA */
 
@@ -80,21 +89,13 @@ h1 {
 /* FOOTER */
 footer {
   text-align: left;
+  margin-left: var(--space);
+  justify-self: start;
+  grid-area: footer;
 }
 
 /* about  */
 #about {
-  text-align: center;
-  justify-items: center;
-  align-items: start;
-
-  display: grid;
-  /*   grid-template-columns: calc(
-    var(--about-grid-c1-whidth) + var(--about-grid-c2-whidth)
-  );
- */
-  grid-template-columns: 100vw;
-
   grid-template-rows:
     calc(var(--about-grid-r1-height) + var(--about-grid-r2-height))
     1fr var(--about-grid-lr-height);
@@ -159,6 +160,7 @@ footer {
   border-radius: 50%;
   width: var(--about-grid-c1-whidth);
   min-width: var(--about-grid-c1-min-whidth);
+  max-width: var(--about-grid-c1-max-whidth);
 }
 
 #about main p:nth-of-type(1) {
@@ -177,6 +179,32 @@ footer {
 #about footer {
   margin-left: var(--space);
   justify-self: start;
+  grid-area: footer;
+}
+
+/* contact */
+
+#contact {
+  grid-template-rows:
+    calc(var(--about-grid-r1-height) + var(--about-grid-r2-height))
+    1fr var(--about-grid-lr-height);
+  grid-template-columns: 100vh;
+  grid-template-areas:
+    "header "
+    "body"
+    "footer";
+}
+#contact header {
+  grid-area: header;
+}
+#contact main {
+  grid-area: body;
+  display: grid;
+  grid-template-rows: 1.2rem 1fr;
+  grid-template-columns: var(--contact-grid-width);
+  text-align: start;
+}
+#contact footer {
   grid-area: footer;
 }
 
